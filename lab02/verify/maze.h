@@ -1,0 +1,39 @@
+#ifndef __MAZEMOD_H__
+#define __MAZEMOD_H__
+
+#include <asm/ioctl.h>
+
+#define _MAZE_MAXUSER 3 // the max number of users
+#define _MAZE_MAXX    101 // width
+#define _MAZE_MAXY    101 // height
+
+typedef struct {
+	int x, y;
+}	coord_t;
+
+typedef struct {
+	int w, h; // the size of the maze
+	int sx, sy;		// initial position
+	int ex, ey;		// target  position
+	char blk[_MAZE_MAXY][_MAZE_MAXX];
+}	maze_t;
+
+// all defination below is an unsinged integer, just use it, don't care about the actual value
+#define MAZE_CREATE   _IOW('M', 0, coord_t)
+#define ONLY_FOR_Q3   _IOW('M', 16, coord_t)
+
+#define	MAZE_RESET    _IO ('M', 1)
+#define	MAZE_DESTROY  _IO ('M', 2)
+
+#define MAZE_GETSIZE  _IOR('M', 11, coord_t)
+#define MAZE_MOVE     _IOW('M', 12, coord_t)
+#define MAZE_GETPOS   _IOR('M', 13, coord_t)
+#define MAZE_GETSTART _IOR('M', 14, coord_t)
+#define MAZE_GETEND   _IOR('M', 15, coord_t)
+
+#ifndef __KERNEL__
+void maze_render_raw(maze_t *m, int cx, int cy, int shownum);
+void maze_render_box(maze_t *m, int cx, int cy, int shownum);
+#endif
+
+#endif

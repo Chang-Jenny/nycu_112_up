@@ -1,0 +1,1 @@
+savedcmd_/build/verify/maze.ko := x86_64-linux-gnu-ld -r -m elf_x86_64 -z noexecstack --no-warn-rwx-segments --build-id=sha1  -T scripts/module.lds -o /build/verify/maze.ko /build/verify/maze.o /build/verify/maze.mod.o;  make -f ./arch/x86/Makefile.postlink /build/verify/maze.ko

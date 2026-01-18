@@ -1,0 +1,23 @@
+obj-m     += mazemod.o
+ccflags-y += -DEXPORT_SYMTAB
+
+TARGETS   := maze mazemod.ko
+CC        := $(CROSS_COMPILE)gcc
+
+all: $(TARGETS)
+
+%: %.c maze.h
+    $(CC) -o $@ $< -Wall -static
+
+mazemod.ko:
+    make -C ../dist/modulebuild M=$(PWD) modules
+
+clean:
+    rm -f $(TARGETS)
+    make -C ../dist/modulebuild M=$(PWD) clean
+
+install: all
+    mkdir -p ../rootfs/modules
+    cp $(TARGETS) ../rootfs/modules
+
+.PHONY: all clean install

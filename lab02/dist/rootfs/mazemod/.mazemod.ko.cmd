@@ -1,0 +1,1 @@
+savedcmd_/build/mazemod/mazemod.ko := x86_64-linux-gnu-ld -r -m elf_x86_64 -z noexecstack --no-warn-rwx-segments --build-id=sha1  -T scripts/module.lds -o /build/mazemod/mazemod.ko /build/mazemod/mazemod.o /build/mazemod/mazemod.mod.o;  make -f ./arch/x86/Makefile.postlink /build/mazemod/mazemod.ko
