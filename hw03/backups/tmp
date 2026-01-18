@@ -1,0 +1,31 @@
+si_signo = 5
+
+TEAP_BRKPT:
+  si_code = 128
+TRAP_TRACE:
+  si_code = 2
+
+
+
+// 0. RIP - 1
+// 1. PTRACE_POKETEXT: restore the original instruction
+// 2. PTRACE_SINGLESTEP: single step
+// 3. waitpid
+// 4. PTRACE_GETREGS: get the regs
+// 5. PTRACE_POKETEXT: set the breakpoint again -> check the rip address!!! -> directly use (void *)breakpoints[i].addr
+
+
+
+
+$rax 0x0000000000402000         $rbx 0x0000000000000000         $rcx 0x0000000000000000
+$rdx 0x000000000000000e         $rsi 0x0000000000000000         $rdi 0x0000000000000000
+$rbp 0x00007ffeae62ce68         $rsp 0x00007ffeae62ce68         $r8  0x0000000000000000
+$r9  0x0000000000000000         $r10 0x0000000000000000         $r11 0x0000000000000000
+$r12 0x0000000000000000         $r13 0x0000000000000000         $r14 0x0000000000000000
+$r15 0x0000000000000000         $rip 0x0000000000401014         $eflags: 0x0000000000000202
+
+
+常見的 si_code 值及其意義
+TRAP_BRKPT (133): 由斷點引發的陷阱。
+TRAP_TRACE (128): 單步執行引發的陷阱。
+CLD_EXITED (1): 子進程正常退出。

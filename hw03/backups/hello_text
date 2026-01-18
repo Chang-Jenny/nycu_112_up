@@ -1,0 +1,18 @@
+401000: f3 0f 1e fa              endbr64  
+401004: 55                       push     rbp
+401005: 48 89 e5                 mov      rbp, rsp
+401008: ba 0e 00 00 00           mov      edx, 0xe
+40100d: 48 8d 05 ec 0f 00 00     lea      rax, [rip + 0xfec]
+401014: 48 89 c6                 mov      rsi, rax
+401017: bf 01 00 00 00           mov      edi, 1
+40101c: e8 0a 00 00 00           call     0x40102b
+401021: bf 00 00 00 00           mov      edi, 0
+401026: e8 10 00 00 00           call     0x40103b
+40102b: b8 01 00 00 00           mov      eax, 1
+401030: 0f 05                    syscall  
+401032: c3                       ret      
+401033: b8 00 00 00 00           mov      eax, 0
+401038: 0f 05                    syscall  
+40103a: c3                       ret      
+40103b: b8 3c 00 00 00           mov      eax, 0x3c
+401040: 0f 05                    syscall  

@@ -1,0 +1,46 @@
+#!/usr/bin/expect
+set timeout -1
+
+
+spawn ./sdb ./guess
+
+expect "(sdb) "
+send "break 0x4010de\r"
+
+expect "(sdb) "
+send "cont\r"
+
+expect "guess a number > "
+send "1\r"
+
+expect "(sdb) "
+send "patch 0x4010e8 0x9090 2\r"
+
+expect "(sdb) "
+send "si\r"
+
+expect "(sdb) "
+send "info break\r"
+
+expect "(sdb) "
+send "delete 0\r"
+
+expect "(sdb) "
+send "break 0x4010ea\r"
+
+expect "(sdb) "
+send "delete 0\r"
+
+expect "(sdb) "
+send "info break\r"
+
+expect "(sdb) "
+send "cont\r"
+
+expect "(sdb) "
+send "patch 0x402015 0x4e49570a 4\r"
+
+expect "(sdb) "
+send "cont\r"
+
+interact

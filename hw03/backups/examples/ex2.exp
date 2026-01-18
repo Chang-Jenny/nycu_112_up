@@ -1,0 +1,31 @@
+#!/usr/bin/expect
+set timeout -1
+
+
+spawn ./sdb ./hello
+
+expect "(sdb) "
+send "break 0x401005\r"
+
+expect "(sdb) "
+send "break 40102b\r"
+
+expect "(sdb) "
+send "info break\r"
+
+expect "(sdb) "
+send "si\r"
+
+expect "(sdb) "
+send "si\r"
+
+expect "(sdb) "
+send "cont\r"
+
+expect "(sdb) "
+send "info reg\r"
+
+expect "(sdb) "
+send "cont\r"
+
+interact

@@ -1,0 +1,43 @@
+40108b: f3 0f 1e fa              endbr64  
+40108f: 55                       push     rbp
+401090: 48 89 e5                 mov      rbp, rsp
+401093: 48 83 ec 10              sub      rsp, 0x10
+401097: ba 12 00 00 00           mov      edx, 0x12
+40109c: 48 8d 05 5d 0f 00 00     lea      rax, [rip + 0xf5d]
+4010a3: 48 89 c6                 mov      rsi, rax
+4010a6: bf 01 00 00 00           mov      edi, 1
+4010ab: e8 78 00 00 00           call     0x401128
+4010b0: ba 10 00 00 00           mov      edx, 0x10
+4010b5: 48 8d 05 44 2f 00 00     lea      rax, [rip + 0x2f44]
+4010bc: 48 89 c6                 mov      rsi, rax
+4010bf: bf 00 00 00 00           mov      edi, 0
+4010c4: e8 67 00 00 00           call     0x401130
+4010c9: 48 89 45 f8              mov      qword ptr [rbp - 8], rax
+4010cd: 48 8d 05 3e 0f 00 00     lea      rax, [rip + 0xf3e]
+4010d4: 48 89 c6                 mov      rsi, rax
+4010d7: 48 8d 05 22 2f 00 00     lea      rax, [rip + 0x2f22]
+4010de: 48 89 c7                 mov      rdi, rax
+4010e1: e8 1a ff ff ff           call     0x401000
+4010e6: 85 c0                    test     eax, eax
+4010e8: 75 1b                    jne      0x401105
+4010ea: ba 06 00 00 00           mov      edx, 6
+4010ef: 48 8d 05 1f 0f 00 00     lea      rax, [rip + 0xf1f]
+4010f6: 48 89 c6                 mov      rsi, rax
+4010f9: bf 01 00 00 00           mov      edi, 1
+4010fe: e8 25 00 00 00           call     0x401128
+401103: eb 19                    jmp      0x40111e
+401105: ba 0b 00 00 00           mov      edx, 0xb
+40110a: 48 8d 05 0f 0f 00 00     lea      rax, [rip + 0xf0f]
+401111: 48 89 c6                 mov      rsi, rax
+401114: bf 01 00 00 00           mov      edi, 1
+401119: e8 0a 00 00 00           call     0x401128
+40111e: bf 00 00 00 00           mov      edi, 0
+401123: e8 10 00 00 00           call     0x401138
+401128: b8 01 00 00 00           mov      eax, 1
+40112d: 0f 05                    syscall  
+40112f: c3                       ret      
+401130: b8 00 00 00 00           mov      eax, 0
+401135: 0f 05                    syscall  
+401137: c3                       ret      
+401138: b8 3c 00 00 00           mov      eax, 0x3c
+40113d: 0f 05                    syscall 

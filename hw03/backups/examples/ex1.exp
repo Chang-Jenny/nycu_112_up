@@ -1,0 +1,22 @@
+#!/usr/bin/expect
+set timeout -1
+
+
+spawn ./sdb
+
+expect "(sdb) "
+send "si\r"
+
+expect "(sdb) "
+send "load ./hello\r"
+
+expect "(sdb) "
+send "si\r"
+
+expect "(sdb) "
+send "si\r"
+
+expect "(sdb) "
+send "cont\r"
+
+interact
