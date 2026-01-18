@@ -1,0 +1,4 @@
+[original] fopen("./file.txt", "w") = 0x560ea4d25c00
+[logger] fopen("./file.txt", "w") = 0x560ea4d25c00
+[original] fwrite(0x7fff82fcfdaa, 1, 10, 0x560ea4d25c00) = 10
+[logger] fwrite("Hello World!\n", 1, 10, 0x560ea4d25c00) = 10

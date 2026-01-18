@@ -1,0 +1,17 @@
+BEGIN open-blacklist
+/tmp/up_hw1_hidden/dir1/*
+END open-blacklist
+BEGIN read-blacklist
+down
+END read-blacklist
+BEGIN write-blacklist
+/tmp/up_hw1_hidden/dir1/*
+/tmp/up_hw1_hidden/dir2/file_*
+END write-blacklist
+BEGIN connect-blacklist
+8.8.8.8
+END connect-blacklist
+BEGIN getaddrinfo-blacklist
+www.yahoo.com
+raw.githubusercontent.com
+END getaddrinfo-blacklist

@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="mobile-web-app-capable" content="yes">
+    
+    
+    
+    <meta name="description" content="# UP24 HW1 Hidden case [TOC]  ## Setup - Download testcase file from [here](https://up.zoolab.org/un">
+    
+    <title>UP24 HW1 Hidden case - CodiMD</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  
+    <link rel="stylesheet" href='/build/emojify.js/dist/css/basic/emojify.min.css'>
+    <link rel="stylesheet" href='/css/font.css'>
+    <link rel="stylesheet" href='/build/fork-awesome/css/fork-awesome.min.css'>
+    <link href="/build/pretty-styles-pack.css" rel="stylesheet"><link href="/build/pretty-styles.css" rel="stylesheet"><link href="/build/pretty.css" rel="stylesheet">
+  
+</head>
+
+<body style="display:none;">
+    <div class="ui-infobar container-fluid unselectable hidden-print">
+        <small>
+            <span>
+                
+                    <span class="ui-lastchangeuser">&thinsp;<i class="ui-user-icon small" style="background-image: url(https://www.gravatar.com/avatar/ba697a8cdef37153799f6a9016c0bdc6?s=96);" data-toggle="tooltip" data-placement="right" title="up112"></i></span>
+                
+                &nbsp;<span class="text-uppercase ui-status-lastchange"></span>
+                <span class="ui-lastchange text-uppercase" data-createtime="Fri Apr 19 2024 15:10:48 GMT+0000 (Coordinated Universal Time)" data-updatetime="Mon Apr 22 2024 03:57:34 GMT+0000 (Coordinated Universal Time)"></span>
+            </span>
+            <span class="pull-right">3 views <a href="#" class="ui-edit" title="Edit this note"><i class="fa fa-fw fa-pencil"></i></a></span>
+            <br>
+            
+        </small>
+    </div>
+    <div id="doc" class="container markdown-body"># UP24 HW1 Hidden case
+[TOC]
+
+## Setup
+- Download testcase file from [here](https://up.zoolab.org/unixprog/hw01/hw1_hiddencase.zip).
+- Unzip `hw1_hiddencase.zip`
+
+- Make your program and move `logger` `logger.so` into `hw1_hiddencase` folder.
+```
+hw1_hiddencase/
+|-- hidden
+|   |-- backup
+|   |   |-- config.txt
+|   |   |-- dir1
+|   |   |   `-- file_1.txt
+|   |   |-- dir2
+|   |   |   |-- fileNoblock
+|   |   |   |-- file_1.txt
+|   |   |   `-- file_2
+|   |-- config.txt
+|   |-- hidden_1
+|   |-- hidden_2
+|   |-- hidden_3
+|   `-- hidden_4
+|-- logger
+|-- logger.so
+`-- test_hidden.sh
+```
+- Run `cd hw1_hiddencase &amp;&amp; sudo chmod +x test_hidden.sh`
+- Use `test_hidden.sh` script to run each hidden case
+```
+usage: ./test_hidden.sh [hidden case num]
+```
+
+
+## Configuration file
+`./hidden/config.txt`
+```
+BEGIN open-blacklist
+/tmp/up_hw1_hidden/dir1/*
+END open-blacklist
+BEGIN read-blacklist
+down
+END read-blacklist
+BEGIN write-blacklist
+/tmp/up_hw1_hidden/dir1/*
+/tmp/up_hw1_hidden/dir2/file_*
+END write-blacklist
+BEGIN connect-blacklist
+8.8.8.8
+END connect-blacklist
+BEGIN getaddrinfo-blacklist
+www.yahoo.com
+raw.githubusercontent.com
+END getaddrinfo-blacklist
+```
+
+
+## Hidden Case 1
+
+- input: `./test_hidden.sh 1`
+- output: 
+```
+addr of buffer = 0x7ffe0078a5f0
+[logger] fopen(&#34;/tmp/up_hw1_hidden/dir1/file_1.txt&#34;, &#34;r&#34;) = 0x0
+fp1 = (nil)
+[logger] fopen(&#34;/tmp/up_hw1_hidden/dir2/file_1.txt&#34;, &#34;r+&#34;) = 0x55c5488982a0
+fp2 = 0x55c5488982a0
+[logger] fopen(&#34;/tmp/up_hw1_hidden/dir2/file_2&#34;, &#34;a+&#34;) = 0x55c548898890
+fp3 = 0x55c548898890
+[logger] fopen(&#34;/tmp/up_hw1_hidden/dir2/fileNoblock&#34;, &#34;a+&#34;) = 0x55c548898a70
+fp4 = 0x55c548898a70
+[logger] fread(0x7ffe0078a5f0, 1, 100, 0x55c5488982a0) = 82
+read size = 82
+A full commitment&#39;s what I&#39;m thinking of
+You wouldn&#39;t get this from any other guy
+
+[logger] fwrite(&#34;HIHI\nI want to insert you\n&#34;, 1, 28, 0x55c548898890) = 0
+write size = 0
+[logger] fread(0x7ffe0078a5f0, 1, 100, 0x55c548898890) = 0
+read size = 0
+
+[logger] fwrite(&#34;HIHI\nI want to insert you\n&#34;, 1, 28, 0x55c548898a70) = 28
+write size = 28
+[logger] fread(0x7ffe0078a5f0, 1, 256, 0x55c548898a70) = 91
+read size = 91
+Never gonna run around and desert you
+Never gonna make you cry
+HIHI
+I want to insert you
+
+```
+- should create the following new files
+    - `{pid}-file_1-read.log`
+        ```
+        A full commitment&#39;s what I&#39;m thinking of
+        You wouldn&#39;t get this from any other guy
+        ```
+    - `{pid}-fileNoblock-read.log`
+        ```
+        Never gonna run around and desert you
+        Never gonna make you cry
+        HIHI
+        I want to insert you
+        ```
+    - `{pid}-fileNoblock-write.log`
+        ```
+        HIHI\nI want to insert you\n
+        ```
+
+## Hidden Case 2
+
+- input: `./test_hidden.sh 2`
+- output: 
+```
+[logger] getaddrinfo(&#34;www.yahoo.com&#34;, (nil), 0x7ffe7c10b640, 0x7ffe7c10b688) = -2
+getaddrinfo: Name or service not known
+[logger] getaddrinfo(&#34;www.github.com&#34;, (nil), 0x7ffe7c10b640, 0x7ffe7c10b688) = 0
+IP addresses for www.github.com:
+IPv4: 20.27.177.113
+[logger] connect(3, &#34;8.8.8.8&#34;, 16) = -1
+Error with client connecting to server
+[logger] connect(3, &#34;1.1.1.1&#34;, 16) = 0
+Connect success!
+```
+
+- ps: `[logger] getaddrinfo(&#34;www.yahoo.com&#34;, (nil), 0x7ffe7c10b640, 0x7ffe7c10b688) = -1` is fine
+
+## Hidden Case 3
+
+- input: `./test_hidden.sh 3` 
+- output: 
+```
+addr of buffer = 0x7ffc0ce3ce80
+[logger] fopen(&#34;/tmp/up_hw1_hidden/dir3/file_1.txt&#34;, &#34;r&#34;) = 0x0
+fp1 = (nil)
+[logger] fopen(&#34;/tmp/up_hw1_hidden/dir3/file_2.txt&#34;, &#34;r&#34;) = 0x564e479a42e0
+fp2 = 0x564e479a42e0
+[logger] fread(0x7ffc0ce3ce80, 1, 100, 0x564e479a42e0) = 82
+read size = 82
+A full commitment&#39;s what I&#39;m thinking of
+You wouldn&#39;t get this from any other guy
+
+```
+- should create the following new files
+    - `{pid}-file_1-read.log`
+        ```
+        A full commitment&#39;s what I&#39;m thinking of
+        You wouldn&#39;t get this from any other guy
+        ```
+
+## Hidden Case 4
+
+- input: `./test_hidden.sh 4`
+- **sample** output:
+```
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
+[logger] getaddrinfo(&#34;composer.github.io&#34;, 0x7fdb833a7bac, 0x55b66a572960, 0x7fdb833a7ba0) = 0
+[logger] connect(5, &#34;185.199.108.153&#34;, 16) = -1
+[logger] fopen(&#34;happy1&#34;, &#34;wb&#34;) = 0x55b66a560d30
+[logger] fwrite(&#34;dac665fdc30fdd8ec78b38b9800061b4150413ff2e3b6f88543c636f7cd84f6db9189d43a81e5503cda447da73c7e5b6&#34;, 1, 96, 0x55b66a560d30) = 96
+100    96  100    96    0     0    274      0 --:--:-- --:--:-- --:--:--   274
+[logger] system(&#34;curl https://composer.github.io/installer.sig -o happy1&#34;) = 0
+  % Total    % Received % Xferd  Average Speed   Time    Time
+[logger] getaddrinfo(&#34;raw.githubusercontent.com&#34;, 0x7fa680830bac, 0x55808e192420, 0x7fa680830ba0) = -2
+    Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
+curl: (6) Could not resolve host: raw.githubusercontent.com
+[logger] system(&#34;curl https://raw.githubusercontent.com/torvalds/linux/master/COPYING -o happy2&#34;) = 1536
+```
+- ps: `[logger] getaddrinfo(&#34;raw.githubusercontent.com&#34;, 0x7fa680830bac, 0x55808e192420, 0x7fa680830ba0) = -1` is fine
+- ps: it&#39;s ok if the `fwrite` content is not null-terminated
+- should create the following new files
+    - `{pid}-happy1-write.log`
+        ```
+        dac665fdc30fdd8ec78b38b9800061b4150413ff2e3b6f88543c636f7cd84f6db9189d43a81e5503cda447da73c7e5b6
+        ```
+    - `happy1`
+        ```
+        dac665fdc30fdd8ec78b38b9800061b4150413ff2e3b6f88543c636f7cd84f6db9189d43a81e5503cda447da73c7e5b6
+        ```
+</div>
+    <div class="ui-toc dropup unselectable hidden-print" style="display:none;">
+        <div class="pull-right dropdown">
+            <a id="tocLabel" class="ui-toc-label btn btn-default" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false" title="Table of content">
+                <i class="fa fa-bars"></i>
+            </a>
+            <ul id="ui-toc" class="ui-toc-dropdown dropdown-menu" aria-labelledby="tocLabel">
+            </ul>
+        </div>
+    </div>
+    <div id="ui-toc-affix" class="ui-affix-toc ui-toc-dropdown unselectable hidden-print" data-spy="affix" style="display:none;"></div>
+    
+</body>
+
+</html>
+<script src="/js/mathjax-config-extra.js"></script>
+
+<script src="/build/MathJax/MathJax.js" defer></script>
+<script src="/build/MathJax/config/TeX-AMS-MML_HTMLorMML.js" defer></script>
+<script src="/build/MathJax/config/Safe.js" defer></script>
+<script src="/config"></script><script src="/build/common.1349a0316c4d8448fc8a.js" defer="defer"></script><script src="/build/pretty-pack.7d6d83ca1bdc20fcbeac.js" defer="defer"></script>
+
+
+

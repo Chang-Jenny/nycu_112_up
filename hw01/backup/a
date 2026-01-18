@@ -1,0 +1,2 @@
+[original] connect(3, 0x7ffdac353c80, 16) = 0
+[logger] connect(3, "20.27.177.113", 16) = 0
