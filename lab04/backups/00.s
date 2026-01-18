@@ -1,0 +1,3 @@
+mov eax, 0x11e60c53
+add eax, 0xcc6a04ce
+sub eax, 0x9125b179
